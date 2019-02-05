@@ -1,0 +1,19 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    volumes: 
+      - postgresql_database:/var/lib/postgresql/data
+  web:
+    build: .
+    container_name: myapp
+    ports:
+      - "8000:8000"
+    volumes: 
+      - ".:./app"
+    environment:
+      - "DATABASE_URL=postgresql://postgres@db:5432/postgres"
+    depends_on: 
+      - postgres
+volumes: 
+  postgresql_database:
