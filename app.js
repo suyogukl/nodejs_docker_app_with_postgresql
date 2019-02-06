@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: false }));
 
 
 app.get('/user', (req, res) => {
-    client.query('SELECT username from users', null, (err, result) => {
+    client.query('SELECT * from users', null, (err, result) => {
         if(err) {
             res.status(500);
             res.send(err.message);

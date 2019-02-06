@@ -1,9 +1,9 @@
 version: '3'
 services:
   postgres:
-    image: postgres
+    image: postgres:alpine
     volumes: 
-      - postgresql_database:/var/lib/postgresql/data
+      - postgresql:/var/lib/postgresql/data
   web1:
     build: .
     container_name: web1
@@ -27,4 +27,4 @@ services:
     depends_on:
       - postgres
 volumes: 
-  postgresql_database:
+  postgresql:
