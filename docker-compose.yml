@@ -4,16 +4,27 @@ services:
     image: postgres
     volumes: 
       - postgresql_database:/var/lib/postgresql/data
-  web:
+  web1:
     build: .
-    container_name: myapp
+    container_name: web1
     ports:
       - "8000:8000"
-    volumes: 
-      - ".:./app"
+    volumes:
+       - ".:/app"
     environment:
-      - "DATABASE_URL=postgresql://postgres@db:5432/postgres"
+      - "DATABASE_URL=postgresql://postgres@postgres:5432/postgres"
     depends_on: 
+      - postgres
+  web2:
+    build: .
+    container_name: web2
+    ports:
+      - "8001:8000"
+    volumes:
+       - ".:/app"
+    environment:
+      - "DATABASE_URL=postgresql://postgres@postgres:5432/postgres"
+    depends_on:
       - postgres
 volumes: 
   postgresql_database:
