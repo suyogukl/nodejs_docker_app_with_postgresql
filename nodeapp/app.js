@@ -6,6 +6,8 @@ let connectionString = process.env.DATABASE_URL || "postgres://localhost:5432/po
 
 const { Client } = require('pg');
 const client = new Client(connectionString);
+let APPNAME = process.env.APPNAME;
+console.log(process);
 
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
@@ -22,6 +24,12 @@ app.get('/user', (req, res) => {
     });
     
 });
+
+app.get('/who-are-you?', (req, res) => {
+    console.log('Recieve a request');
+    res.send(`<h1>I'm the ${APPNAME}</h1>`);
+});
+
 
 app.post('/', (req, res) => {
     let username = req.body.username;

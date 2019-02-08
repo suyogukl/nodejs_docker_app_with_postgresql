@@ -4,26 +4,28 @@ services:
     image: postgres:alpine
     volumes: 
       - postgresql:/var/lib/postgresql/data
-  web1:
+  nodeapp1:
     build: .
-    container_name: web1
+    container_name: nodeapp1
     ports:
       - "8000:8000"
     volumes:
        - ".:/app"
     environment:
       - "DATABASE_URL=postgresql://postgres@postgres:5432/postgres"
+      - "APPNAME=nodeapp1"
     depends_on: 
       - postgres
-  web2:
+  nodeapp2:
     build: .
-    container_name: web2
+    container_name: nodeapp2
     ports:
       - "8001:8000"
     volumes:
        - ".:/app"
     environment:
       - "DATABASE_URL=postgresql://postgres@postgres:5432/postgres"
+      - "APPNAME=nodeapp2"
     depends_on:
       - postgres
 volumes: 
