@@ -5,24 +5,24 @@ services:
     volumes: 
       - postgresql:/var/lib/postgresql/data
   nodeapp1:
-    build: .
+    build: ./nodeapp
     container_name: nodeapp1
     ports:
       - "8000:8000"
     volumes:
-       - ".:/app"
+       - "./nodeapp:/app"
     environment:
       - "DATABASE_URL=postgresql://postgres@postgres:5432/postgres"
       - "APPNAME=nodeapp1"
     depends_on: 
       - postgres
   nodeapp2:
-    build: .
+    build: ./nodeapp
     container_name: nodeapp2
     ports:
       - "8001:8000"
     volumes:
-       - ".:/app"
+       - "./nodeapp:/app"
     environment:
       - "DATABASE_URL=postgresql://postgres@postgres:5432/postgres"
       - "APPNAME=nodeapp2"

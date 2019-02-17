@@ -26,7 +26,6 @@ app.get('/user', (req, res) => {
 });
 
 app.get('/who-are-you?', (req, res) => {
-    console.log('Recieve a request');
     res.send(`<h1>I'm the ${APPNAME}</h1>`);
 });
 
